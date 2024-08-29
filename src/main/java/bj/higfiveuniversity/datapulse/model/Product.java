@@ -1,12 +1,19 @@
 package bj.higfiveuniversity.datapulse.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Product {
  private Long id; 
  private String name;
  private double price;
 
 
-
+ @Id
+ @GeneratedValue(strategy =  GenerationType.AUTO)
 public Long getId() {
     return id;
 }
