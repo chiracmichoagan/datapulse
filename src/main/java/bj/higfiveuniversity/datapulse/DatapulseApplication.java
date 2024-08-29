@@ -26,7 +26,7 @@ public class DatapulseApplication {
 			 .createdAt(LocalDateTime.now())
 			 .updatedAt(LocalDateTime.now())
 			 .build();
-
+			 userRepository.save(JohnDoe);
 			 User John = new User(null,
 			 "John Doe",
 			 "arg@gmail.com",
