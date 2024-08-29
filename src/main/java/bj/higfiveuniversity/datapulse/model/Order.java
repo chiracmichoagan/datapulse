@@ -9,14 +9,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Product {
+public class Order {
 @Id
 @GeneratedValue
- private Long id; 
- private String name;
- private double price;
- private String description;
- private Double stockQuantity; 
- private LocalDateTime created_at;
- private LocalDateTime updated_at;
+private Long id;       
+private Long userId;  // Todo: ajouter le user-id;
+private Double totalAmount;
+private String status;
+private LocalDateTime created_at;
+private LocalDateTime updated_at;
+
 }

@@ -19,8 +19,8 @@
   |id               |varchar        |l'id du produit         |
   |name             |varchar        |nom du produit          |
   |price            |varchar        |prix du produit         |
-  | description     |varchar        |details sur le produit  |
-  | stock quantity  |varchar        |quantité en stock       |
+  |description     |varchar        |details sur le produit  |
+  |stock quantity  |varchar        |quantité en stock       |
   |created_at       |Timestamp      |date de creation        |
   |updated_at       |Timestamp      |date de modfication     |
   |_________________|_______________|______date de modfication     |

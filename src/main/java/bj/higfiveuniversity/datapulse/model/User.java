@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Data;
 // import lombok.AllArgsConstructor;
 // import lombok.EqualsAndHashCode;
@@ -22,7 +23,7 @@ import lombok.Data;
 @AllArgsConstructor
 @NoArgsConstructor
 */
-
+@Builder   //creer un intance ...
 @Data     // representer getter & setter & autres
 @Entity  //le model va representé une table dans notre base de données
 public class User {
