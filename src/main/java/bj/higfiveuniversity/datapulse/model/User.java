@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 // import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.Data;
 // import lombok.RequiredArgsConstructor;
 // import lombok.Setter;
 // import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 /* 
 @Getter
@@ -20,11 +23,13 @@ import lombok.Data;
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
-@AllArgsConstructor
-@NoArgsConstructor
 */
+
+
 @Builder   //creer un intance ...
 @Data     // representer getter & setter & autres
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity  //le model va representé une table dans notre base de données
 public class User {
      @Id

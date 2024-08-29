@@ -26,6 +26,15 @@ public class DatapulseApplication {
 			 .createdAt(LocalDateTime.now())
 			 .updatedAt(LocalDateTime.now())
 			 .build();
+
+			 User John = new User(null,
+			 "John Doe",
+			 "arg@gmail.com",
+			 "123",
+			 LocalDateTime.now(),
+			 LocalDateTime.now()
+			 );
+			 userRepository.save(John);
 		};
 	}
 

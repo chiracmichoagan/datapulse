@@ -81,3 +81,25 @@
 @PathVariable : on l'utilise pour extrait disons une partie variable dans notre chemin d'url.
 @RequestBody  : on l'utilise quand on reçois des donées via post.
 @RequestParam : on l'utilise quand on a des paramètres dand l'url sous la forme `?param=valeur`.
+
+
+
+`spring.jpa.hibernate.ddl-auto` :
+
+cette propriété est utiliser pour spécifier la strategie de generation du schéma de la BDD lors du demarrage de l'application.
+Hibernate, l'ORM utilisé par defaut  dans Spring Boot, peut automatiquement créer, mettre à jour , valider ou gerer le schema de la base de donnée en fonction de cette propriété
+
+Voici une explication des différents valeurs qu'on peut attribuer:
+
+
+1. ``none` : Desactive la gestion automatiquement du schema par Hibernate. Aucune modification du schema de la BDD ne sera effectuer au demarragen de l'application
+2.  `validate ` : Hibernate vérifie que le schema de la BDD correpond à la structure Definie dans, les entitées JPA. Aucune modificaton du schema ne sera effectuée ; mais si le schema est incoreect ou ne correspond pas, une exception est lée 
+3.  `update` : Hibernate met à jour le schema de la BDD pour qu'il correspond aux entitées JPA definies. cela inclut l'ajout de nouvelles tables, colonnes ou contraines, mais ne supprime ni ne modifie pas les tables ou les colonnes existantes.
+4.  `create` : HIbernate supoprime le schéma existant et crée un nouveau schema à partir des entitées JPA definies . cela implique de perdre toutes les données existantes puique le schema est crée à chaque demarrage de l'application
+5.  `create-drop` : Similaire à ``create`` , mais avec la particularité que le schema est suprimés lorsque l'application est arrêtées . CELA SIGNIFIE que la DBB est recrée à chaque fois que le demarrage est faite et est supprimées a chaque arrêt de l'application.
+6.  
+
+## Definition 
+
+`Schéma` d'une BDD est une  representaton logique de la structure logique des donées, incluant les tables , les colonnes même de ces tables, les relations entre les tables, et les contraintes. IL definit comment les données sont organisées, interconnectées, et géreées pour assurer leur cohérance et intégrité.
+  
