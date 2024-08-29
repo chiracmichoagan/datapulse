@@ -1,3 +1,68 @@
+## Tables 
+ 1. Users : Stocker les infos sur les clients
+   _____________________________________________________
+  |Nom de la colonne|Type de données|Description        |
+  |-----------------|---------------|-------------------|
+  |id               |varchar        |l'id du user       |
+  |username         |varchar        |le nom  du user    |
+  |email            |varchar        |email du user      |
+  |password         |varchar        |password du user   |
+  |created_at       |Timestamp      |date de creation   |
+  |updated_at       |Timestamp      |date de modfication|
+  
+   
+ 2. Products : Stocker les infos sur les produits
+   
+   __________________________________________________________
+  |Nom de la colonne|Type de données|Description             |
+  |-----------------|---------------|------------------------|
+  |id               |varchar        |l'id du produit         |
+  |name             |varchar        |nom du produit          |
+  |price            |varchar        |prix du produit         |
+  | description     |varchar        |details sur le produit  |
+  | stock quantity  |varchar        |quantité en stock       |
+  |created_at       |Timestamp      |date de creation        |
+  |updated_at       |Timestamp      |date de modfication     |
+  |_________________|_______________|______date de modfication     |
+   
+
+ 1. Orders : Stocker les infos sur les commmandes faites par les clients
+
+   _____________________________________________________
+  |Nom de la colonne|Type de données|Description        |
+  |-----------------|---------------|-------------------|
+  |id               |bigint         |Clé primaire       |
+  |user-id          |bigint         |cle secondaire     |
+  |total_comment    |Decimal        |Montant total      |
+  |status           |varchar        |status (en cours)  |
+  |created_at       |Timestamp      |date de creation   |
+  |updated_at       |Timestamp      |date de modfication|
+
+
+ 1. Order Items: Stocker les  infos sur les produits inclus dans chaque commande
+   
+   _________________________________________________________________
+  |Nom de la colonne|Type de données|Description                    |
+  |-----------------|---------------|-------------------------------|
+  |id               |bigint         |Clé primaire                   |
+  |order-id         |bigint         |cle secondaire =>`orders`      |
+  |product_id       |bigint         |cle secondaire =>`products`    |
+  |quantity         |int            |qté de produits commandée      |
+  |price            |decimal        |prix du produit                |
+  |created_at       |Timestamp      |date de creation               |
+  |updated_at       |Timestamp      |date de modfication            |
+
+
+
+## Relations
+
+# `users   ` -> `orders`:  un user peut faire plusieurs commandes
+# `orders   ` -> `orders_items`: une commande peut avoir plusieurs items
+# `product   ` -> `orders_items`: un produit peut être commandé dans une journée
+
+
+
+
 ## Repository
 
  un repository est un composant de votre application qui gère les opération de persistence (CRUD) sur les entités dans un base de donnée . En gros c'est la couche qui nous permet parler à la la BDD sans se soucier des details.
