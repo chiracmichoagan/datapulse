@@ -1,6 +1,8 @@
 package bj.higfiveuniversity.datapulse.model;
 
 import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -9,20 +11,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_items")
+@Data
+@Entity
+@Table(name="order_items")
 public class OrderItem { 
 @Id
 @GeneratedValue
- 
 private Long id ;  
 //Todo:: créer la clé primaire order-id;
 //Todo:: crer la clé secondaire product_id
+@Column(nullable=false)
 private Double quantity;
-private Double price;   
+
+@Column(nullable=false)
+private Double price;
+
+@Column(updatable=false)
 private LocalDateTime created_at;
 private LocalDateTime updated_at;
 

@@ -19,14 +19,14 @@ public class DatapulseApplication {
 	public CommandLineRunner demo(UserRepository userRepository){
 		return (args) -> {
 			//Sauvegarder Jhone Doe dans la base de donnée
-			 User JohnDoe = User.builder()
-			 .email("Johndoe@gmail.com")
-			 .username("John Doe")
-			 .password("123")
-			 .createdAt(LocalDateTime.now())
-			 .updatedAt(LocalDateTime.now())
-			 .build();
-			 userRepository.save(JohnDoe);
+			//  User JohnDoe = User.builder()
+			//  .email("Johndoe@gmail.com")
+			//  .username("John Doe")
+			//  .password("123")
+			//  .createdAt(LocalDateTime.now())
+			//  .updatedAt(LocalDateTime.now())
+			//  .build();
+			//  userRepository.save(JohnDoe);
 			 User John = new User(null,
 			 "John Doe",
 			 "arg@gmail.com",
