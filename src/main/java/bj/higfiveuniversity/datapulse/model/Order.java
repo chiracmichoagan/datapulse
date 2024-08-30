@@ -14,6 +14,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -37,9 +39,24 @@ private Double totalAmount;
 @Column(nullable = false)
 private String status;
 
-@Column(updatable = false)
-private LocalDateTime created_at;
+@Column(nullable =false, updatable = false)
+private LocalDateTime createdAt;
 
-private LocalDateTime updated_at;
+private LocalDateTime updatedAt;
+
+
+    // s'execute quand on insert une donnée
+    @PrePersist
+    protected void onCreate(){
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    // s'execute quand on modifie une donnée
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt =  LocalDateTime.now();
+
+    }
 
 }

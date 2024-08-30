@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bj.higfiveuniversity.datapulse.model.Product;
 import bj.higfiveuniversity.datapulse.repository.ProductRepository;
+import bj.higfiveuniversity.datapulse.services.ProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,29 +26,33 @@ import org.springframework.web.bind.annotation.PathVariable;
     public class ProductController {
     @Autowired
     private ProductRepository productRepository; 
+
+    @Autowired
+    private ProductService productService;
    
     @GetMapping
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return productService.getAllProducts();
     }
     
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+        return productService.createProduct(product);
     }
 
     @PutMapping("/{id}")
     public Product  updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        Product product = productRepository.findById(id).orElseThrow();
-        product.setName(productDetails.getName());
-        product.setPrice(productDetails.getPrice());
-        return productRepository.save(product);
+        Product  productUpdate = productService.updateProduct(id,productDetails);
+        return   productRepository.save(productUpdate);
     }
     
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
-        Product product = productRepository.findById(id).orElseThrow();
-        productRepository.delete(product);
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+
+       productService.deleteProduct(id);
+
+       return ResponseEntity.noContent().build();
+
     }
 
 }

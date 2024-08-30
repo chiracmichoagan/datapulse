@@ -160,7 +160,7 @@ Les types de Relations :
 | id  | order_id | product_id | quantity | price   | created_at |  update_at  |
 | --  | -------- | ---------- | -------- | -----   | ---------- |  ---------- | 
 |  1  |  12      |     20     |    2     |         | 30-08-2024 |  30-08-2024 |
-|  1  |  13      |     21     |    12    |         | 30-08-2024 |  30-08-2024 |
+|  2  |  12      |     21     |    12    |         | 30-08-2024 |  30-08-2024 |
 |  1  |  14      |     22     |    8     |         | 30-08-2024 |  30-08-2024 |
 |  1  |  15      |     23     |    2     |         | 30-08-2024 |  30-08-2024 |
 |  1  |  16      |     24     |    2     |         | 30-08-2024 |  30-08-2024 |
@@ -168,11 +168,5 @@ Les types de Relations :
 |  1  |  18      |     26     |    2     |         | 30-08-2024 |  30-08-2024 |
 |  1  |  19      |     27     |    26    |         | 30-08-2024 |  30-08-2024 |
 
-| ----------------- | --------------- | --------------------------- |
-| id                | bigint          | Clé primaire                |
-| order-id          | bigint          | cle secondaire =>`orders`   |
-| product_id        | bigint          | cle secondaire =>`products` |
-| quantity          | int             | qté de produits commandée   |
-| price             | decimal         | prix du produit             |
-| created_at        | Timestamp       | date de creation            |
-| updated_at        | Timestamp       | date de modfication         |
+
+

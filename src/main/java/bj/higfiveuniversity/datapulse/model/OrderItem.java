@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,8 +43,24 @@ public class OrderItem {
     @Column(nullable = false)
     private Double price;
 
-    @Column(updatable = false)
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+
+    
+    // s'execute quand on insert une donnée
+    @PrePersist
+    protected void onCreate(){
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    // s'execute quand on modifie une donnée
+    @PreUpdate
+    protected void onUpdate(){
+        updatedAt =  LocalDateTime.now();
+
+    }
 
 }
