@@ -57,11 +57,11 @@
 
 ## Relations
 
-# `users   ` -> `orders`: un user peut faire plusieurs commandes
+# `users   ` -> `orders`: un user peut faire plusieurs commandes => One-to-Many
 
-# `orders   ` -> `orders_items`: une commande peut avoir plusieurs items
+# `orders   ` -> `orders_items`: une commande peut avoir plusieurs items => One-to-Many
 
-# `product   ` -> `orders_items`: un produit peut être commandé dans une journée
+# `product   ` -> `orders_items`: un produit peut être commandé plusieurs fois dans une journée =>
 
 ## Repository
 
@@ -88,7 +88,8 @@ Hibernate, l'ORM utilisé par defaut dans Spring Boot, peut automatiquement cré
 
 Voici une explication des différents valeurs qu'on peut attribuer:
 
-1. ``none` : Desactive la gestion automatiquement du schema par Hibernate. Aucune modification du schema de la BDD ne sera effectuer au demarragen de l'application
+1. ``none` : Desactive la gestion automatiquement du schema par Hibernate. Aucune modification du schema de la BDD ne sera effectuer au demarragen de l'application 
+
 2. `validate ` : Hibernate vérifie que le schema de la BDD correpond à la structure Definie dans, les entitées JPA. Aucune modificaton du schema ne sera effectuée ; mais si le schema est incoreect ou ne correspond pas, une exception est lée
 3. `update` : Hibernate met à jour le schema de la BDD pour qu'il correspond aux entitées JPA definies. cela inclut l'ajout de nouvelles tables, colonnes ou contraines, mais ne supprime ni ne modifie pas les tables ou les colonnes existantes.
 4. `create` : HIbernate supoprime le schéma existant et crée un nouveau schema à partir des entitées JPA definies . cela implique de perdre toutes les données existantes puique le schema est crée à chaque demarrage de l'application
@@ -99,16 +100,13 @@ Voici une explication des différents valeurs qu'on peut attribuer:
 
 `Schéma` d'une BDD est une representaton logique de la structure logique des donées, incluant les tables , les colonnes même de ces tables, les relations entre les tables, et les contraintes. IL definit comment les données sont organisées, interconnectées, et géreées pour assurer leur cohérance et intégrité.
 
-
 1. `@Entity ` : L'annotation `@Entity` en Java est utilisée pour marquer une classe comme une entité JPA (Java Persistence API), ce qui signifie que cette classe correspond à une table dans une base de données relationnelle. Chaque instance de cette classe représente une ligne dans la table. L'annotation `@Entity` indique également que cette classe peut être gérée par le gestionnaire d'entités JPA pour les opérations de persistance, comme les insertions, les mises à jour, et les suppressions.
-
 
 2. `@id` : L'annotation `@Id` en Java est utilisée pour indiquer que l'attribut d'une entité est la clé primaire. Elle est souvent utilisée dans le contexte de JPA (Java Persistence API) pour identifier l'attribut unique qui différencie chaque instance de l'entité dans la base de données. Lorsqu'une classe est marquée comme une entité JPA avec `@Entity`, l'annotation `@Id` est utilisée sur le champ qui servira de clé primaire dans la table correspondante de la base de données.
 
-
 3. ` @Bas` : L'annotation `@Bas` en Java n'est pas standard dans le langage ou les frameworks couramment utilisés comme Spring ou Hibernate. Si vous faites référence à une annotation spécifique qui serait liée à une bibliothèque ou un framework particulier, il serait utile de connaître le contexte exact dans lequel elle est utilisée pour fournir une explication appropriée.
 
-Si c'est une annotation personnalisée, elle pourrait être définie dans le code pour un usage spécifique. Dans ce cas, vous pouvez consulter le code source ou la documentation associée pour en savoir plus. 
+Si c'est une annotation personnalisée, elle pourrait être définie dans le code pour un usage spécifique. Dans ce cas, vous pouvez consulter le code source ou la documentation associée pour en savoir plus.
 
 4. `@Temporal` :L'annotation `@Temporal` en Java est utilisée pour indiquer le type de données temporelles que vous souhaitez stocker dans une base de données lorsqu'un champ est de type `java.util.Date` ou `java.util.Calendar`. Elle permet de spécifier si la date, l'heure, ou les deux doivent être stockées.
 
@@ -120,10 +118,10 @@ Elle prend comme paramètre une des trois valeurs suivantes :
 
 Voici un exemple :
 
-```java
+<!-- ```java
 @Temporal(TemporalType.DATE)
 private Date birthDate;
-```
+``` -->
 
 Dans cet exemple, seule la date sera stockée en base de données, sans l'heure.
 
@@ -133,17 +131,17 @@ Dans cet exemple, seule la date sera stockée en base de données, sans l'heure.
 Voici un exemple :
 
 ```java
-@Entity
-public class User {
-    @Id
-    private Long id;
+// @Entity
+// public class User {
+//     @Id
+//     private Long id;
 
-    private String name;
+//     private String name;
 
-    @Transient
-    private int age; // Ce champ ne sera pas enregistré dans la base de données
-}
-```
+//     @Transient
+//     private int age; // Ce champ ne sera pas enregistré dans la base de données
+// }
+// ```
 
 Dans cet exemple, le champ `age` ne sera pas sauvegardé dans la base de données.
 indique qu'un attribut ne doit pasn être persistant cet attribut nr sera donc jamais prise en compte lors de l'execution des réquêt
@@ -151,8 +149,7 @@ indique qu'un attribut ne doit pasn être persistant cet attribut nr sera donc j
 6. `@lob` : L'annotation `@Lob` en Java est utilisée pour indiquer que le type de l'attribut d'une entité JPA est de grande taille et qu'il doit être stocké comme un type de données "Large Object" dans la base de données. Cela signifie que l'attribut peut contenir des données volumineuses, comme un texte long (`CLOB` pour `Character Large Object`) ou des fichiers binaires (`BLOB` pour `Binary Large Object`), tels que des images ou des vidéos.
    indique que la colonne correpondante en base de données est un LOB (large object)
 
-
-7. `@Table` :  L'annotation `@Table` en Java est utilisée pour spécifier la table de la base de données qui doit être mappée à l'entité JPA correspondante. Si cette annotation n'est pas utilisée, le nom de la table par défaut est le même que celui de l'entité. Avec `@Table`, vous pouvez définir des options comme le nom de la table (`name`), le schéma (`schema`), les index (`indexes`), et les contraintes uniques (`uniqueConstraints`), offrant ainsi un contrôle plus fin sur la façon dont l'entité est mappée à la base de données.
+7. `@Table` : L'annotation `@Table` en Java est utilisée pour spécifier la table de la base de données qui doit être mappée à l'entité JPA correspondante. Si cette annotation n'est pas utilisée, le nom de la table par défaut est le même que celui de l'entité. Avec `@Table`, vous pouvez définir des options comme le nom de la table (`name`), le schéma (`schema`), les index (`indexes`), et les contraintes uniques (`uniqueConstraints`), offrant ainsi un contrôle plus fin sur la façon dont l'entité est mappée à la base de données.
    permet de definir les infos sur la table representant cette entité en BDD
 
 8. `@Column` : L'annotation `@Column` en Java est utilisée pour spécifier les détails d'une colonne dans une table de base de données lorsque vous mappez une entité JPA. Cette annotation vous permet de personnaliser le nom de la colonne (`name`), de définir si la colonne peut être nulle (`nullable`), de définir la longueur pour les types `String` (`length`), ainsi que d'autres attributs comme `unique`, `insertable`, et `updatable`. Si elle n'est pas spécifiée, les paramètres par défaut sont utilisés, par exemple le nom de la colonne correspondra au nom de l'attribut de l'entité.
@@ -160,4 +157,22 @@ indique qu'un attribut ne doit pasn être persistant cet attribut nr sera donc j
 
 Les types de Relations :
 
-1. One-to-one
+| id  | order_id | product_id | quantity | price   | created_at |  update_at  |
+| --  | -------- | ---------- | -------- | -----   | ---------- |  ---------- | 
+|  1  |  12      |     20     |    2     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  13      |     21     |    12    |         | 30-08-2024 |  30-08-2024 |
+|  1  |  14      |     22     |    8     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  15      |     23     |    2     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  16      |     24     |    2     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  17      |     25     |    5     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  18      |     26     |    2     |         | 30-08-2024 |  30-08-2024 |
+|  1  |  19      |     27     |    26    |         | 30-08-2024 |  30-08-2024 |
+
+| ----------------- | --------------- | --------------------------- |
+| id                | bigint          | Clé primaire                |
+| order-id          | bigint          | cle secondaire =>`orders`   |
+| product_id        | bigint          | cle secondaire =>`products` |
+| quantity          | int             | qté de produits commandée   |
+| price             | decimal         | prix du produit             |
+| created_at        | Timestamp       | date de creation            |
+| updated_at        | Timestamp       | date de modfication         |

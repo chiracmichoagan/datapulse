@@ -18,6 +18,9 @@ import lombok.Data;
 // import lombok.ToString;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+import jakarta.persistence.OneToMany;
 /* 
 @Getter
 @Setter
@@ -51,4 +54,7 @@ public class User {
     private LocalDateTime createdAt;
     
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+   private List<Order> orders;
 }
